@@ -25,16 +25,16 @@ class HomeController extends Controller
     public function index(request $request)
     {
         error_reporting(0);
-        if($request->bulan==""){
+        // if($request->bulan==""){
             $bulan=date('m');
-        }else{
-            $bulan=$request->bulan;
-        }
-        if($request->tahun==""){
+        // }else{
+        //     $bulan=$request->bulan;
+        // }
+        // if($request->tahun==""){
             $tahun=date('Y');
-        }else{
-            $tahun=$request->tahun;
-        }
+        // }else{
+        //     $tahun=$request->tahun;
+        // }
         $template='top';
         return view('home',compact('template','bulan','tahun'));
     }
