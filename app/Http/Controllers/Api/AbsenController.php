@@ -97,6 +97,7 @@ class AbsenController extends BaseController
                                     'long'=>$request->long,
                                     'foto'=>$filePath,
                                     'approve'=>0,
+                                    
                                 ]
                             );
                             $success['tanggal']=$tanggal;
