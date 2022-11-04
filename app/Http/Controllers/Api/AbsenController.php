@@ -97,8 +97,9 @@ class AbsenController extends BaseController
                                     'long'=>$request->long,
                                     'foto'=>$filePath,
                                     'approve'=>0,
-                                    
+
                                 ]
+                                
                             );
                             $success['tanggal']=$tanggal;
                             $success['jam_masuk']=jam_absen($employe->nik,$tanggal,'M');
