@@ -99,7 +99,7 @@ class AbsenController extends BaseController
                                     'approve'=>0,
 
                                 ]
-                                
+
                             );
                             $success['tanggal']=$tanggal;
                             $success['jam_masuk']=jam_absen($employe->nik,$tanggal,'M');
@@ -123,6 +123,7 @@ class AbsenController extends BaseController
         $employe = Vemploye::where('nik',$akses->username)->first(); 
         $rules = [];
         $messages = [];
+        
 
         $rules['tanggal'] = 'required';
         $rules['jam_masuk'] = 'required';
