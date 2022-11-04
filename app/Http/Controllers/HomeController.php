@@ -35,7 +35,6 @@ class HomeController extends Controller
         }else{
             $tahun=$request->tahun;
         }
-        dd($bulan);
         $template='top';
         return view('home',compact('template','bulan','tahun'));
     }
