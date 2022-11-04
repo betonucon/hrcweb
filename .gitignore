@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/file/*
+/public/file_excel_employe/*
 /public/storage
 /storage/*.key
 /vendor
