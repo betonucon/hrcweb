@@ -227,7 +227,7 @@ function cuti_digunakan($nik){
    return $absen;
    
 }
-function jumlah_wajid_kehadiran($bulan,$tahun,$group_id){
+function jumlah_wajid_kehadiran($bulan=null,$tahun,$group_id){
    $data=App\Models\Jadwal::whereMonth('tanggal',$bulan)->whereYear('tanggal',$tahun)->where('group_id',$group_id)->where('jadwal','!=',0)->count();
    return $data;
 }
