@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index(request $request)
     {
+        error_reporting(0);
         if($request->bulan==""){
             $bulan=date('m');
         }else{
