@@ -103,6 +103,8 @@ Route::group(['middleware'    => 'auth'],function(){
         Route::get('/', [AbsenController::class, 'index']);
         Route::post('/proses_rekap', [AbsenController::class, 'proses_rekap']);
         Route::get('/create', [AbsenController::class, 'create']);
+        Route::get('/cek_download_excel', [AbsenController::class, 'cek_download_excel']);
+        Route::get('/download_excel', [AbsenController::class, 'download_excel']);
         Route::get('/modal', [AbsenController::class, 'modal']);
         Route::get('/slip-gaji', [AbsenController::class, 'slip']);
         Route::get('/get_data', [AbsenController::class, 'get_data']);

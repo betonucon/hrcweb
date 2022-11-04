@@ -160,7 +160,7 @@ function jam_selisih_absen($nik,$tanggal,$status){
    $cek=App\Models\Vabsen::where('nik',$nik)->where('tanggal',$tanggal)->where('status',$status)->count();
    if($cek>0){
       $data=App\Models\Vabsen::where('nik',$nik)->where('tanggal',$tanggal)->where('status',$status)->firstOrfail();
-      $telat=$data['telat_jam'].'.'.$data['telat_menit'];
+      $telat=$data['telat'];
       return $telat;
       
    }else{

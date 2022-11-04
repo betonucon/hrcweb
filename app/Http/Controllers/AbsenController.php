@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Imports\EmployeImport;
+use App\Exports\AbsenExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 use App\Models\Employe;
@@ -50,6 +50,23 @@ class AbsenController extends Controller
         }
         return view('absen.index_rekap',compact('template','bulan','tahun'));
     }
+
+    public function cek_download_excel(request $request)
+    {
+       
+                echo'@ok';
+            
+        
+    }
+    public function download_excel(request $request)
+    {
+       
+            $tanggal=$request->tanggal;
+            $nama='ABSEN'.$tanggal;
+            return Excel::download(new AbsenExport($tanggal), ''.$nama.'.xlsx');
+        
+    }
+
     public function proses_rekap(request $request)
     {
         error_reporting(0);
