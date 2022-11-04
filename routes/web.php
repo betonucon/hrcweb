@@ -44,14 +44,11 @@ Route::get('/testevent', function () {
     echo 'test broadcast event sangcahaya.id';
 });
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
+
 Route::group(['middleware'    => 'auth'],function(){
     
-    Route::group(['prefix' => 'home'],function(){
-        Route::get('/', 'HomeController@index')->name('home');
-        Route::get('/get_data', 'HomeController@get_data');
-    });
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/home', [HomeController::class, 'index']);
 
     Route::group(['prefix' => 'employe'],function(){
         Route::get('/', [EmployeController::class, 'index']);
