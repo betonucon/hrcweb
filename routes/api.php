@@ -27,4 +27,7 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::post('lembur', [AbsenController::class, 'lembur']);
     Route::get('rekap_absensi', [AbsenController::class, 'rekap_absensi']);
     
+    
 });
+
+Route::get('dashboard_absensi', [AbsenController::class, 'dashboard_absensi']);

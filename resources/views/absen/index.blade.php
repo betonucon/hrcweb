@@ -8,7 +8,7 @@
     </ol>
     <h1 class="page-header">Absensi Harian <small> (tampilan daftar gaji bulanan)</small></h1>
     <div class="btn-group" style="margin-bottom:1%">
-        <button class="btn btn-success" onclick="download_excel(`{{$tanggal}}`)"><i class="fas fa-upload"></i> Download Excel</button>
+        <button class="btn btn-success" onclick="download_excel()"><i class="fas fa-upload"></i> Download Excel</button>
         <button class="btn btn-success" onclick="filter_tanggal()"><i class="fas fa-search"></i> Filter</button>
         
     </div>
@@ -96,7 +96,28 @@
             </div>
         </div>
     </div>
-</div>           
+</div> 
+<div class="modal fade" id="modal-download" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Pilih Tanggal Download</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Tanggal</label>
+                    <input type="text" id="tanggal_cari2" class="form-control" />
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Tutup</a>
+                <a href="javascript:;" class="btn btn-danger" id="download-data" >Proses</a>
+            </div>
+        </div>
+    </div>
+</div>          
 @endsection
 
 @section('script')
@@ -173,9 +194,44 @@
 			format:"yyyy-mm-dd",
             autoclose: true,
 		});
+        $('#tanggal_cari2').datepicker({
+			format:"yyyy-mm-dd",
+            autoclose: true,
+		});
 
         $('#notnotifikasiabsen').hide();
         // $('body .dropdown-toggle').dropdown(); 
+        function download_excel(){
+            $('#modal-download').modal('show');
+        }
+        $('#download-data').on('click', () => {
+            var mulai=$('#tanggal_cari2').val();
+            if(mulai==""){
+                alert('Tentukan tanggal')
+            }else{
+                $.ajax({
+                    type: 'GET',
+                    url: "{{url('absen/cek_download_excel')}}",
+                    data: "mulai="+mulai,
+                    success: function(msg){
+                        var bat=msg.split('@');
+                        if(bat[1]=='ok'){
+                            $('#modal-download').modal('hide');
+                            swal("Success! berhasil diproses!", {
+                                icon: "success",
+                            });
+                            location.assign("{{url('absen/download_excel')}}?tanggal="+mulai)
+                        }else{
+                            $('#notifikasidownload').show();
+					        $('#notifikasi-download').html(msg);
+                        }
+                        
+                    }
+                });
+            }
+            
+        });
+
         function delete_data(id){
            
 			swal({

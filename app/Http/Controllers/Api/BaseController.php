@@ -26,6 +26,15 @@ class BaseController extends Controller
 
         return response()->json($response, 200);
     }
+    public function sendResponsechart($result)
+    {
+    	$response = [
+            'data'    => $result,
+        ];
+
+
+        return response()->json($response, 200);
+    }
     public function sendResponse2($result, $message)
     {
     	$response = [

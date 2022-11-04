@@ -1,5 +1,10 @@
 
-				
+					<li class="has-sub @if(Request::is('home')==1 || Request::is('/')==1) active @endif">
+						<a href="{{url('home')}}"  class="text-white">
+							<i class="fas fa-home text-white"></i> 
+							<span>Home</span>
+						</a>
+					</li>
 					<li class="has-sub @if(Request::is('master/*')==1) active @endif">
 						<a href="javascript:;" class="text-white">
 							<b class="caret"></b>

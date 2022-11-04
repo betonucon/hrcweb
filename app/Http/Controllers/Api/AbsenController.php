@@ -257,6 +257,28 @@ class AbsenController extends BaseController
         
         
     }
+    public function dashboard_absensi(Request $request)
+    {
+        error_reporting(0);
+        $akses = $request->user(); 
+        $employe = Vemploye::where('nik',$akses->username)->first(); 
+        $tanggal=$request->tanggal;
+        
+          $sub=[];
+            foreach(get_group() as $grp){
+                $subcon=[];
+                $subcon['jumlah']=sum_employe_group($grp->id,$tanggal);
+                $subcon['nama']=$grp->group;
+                $subcon['hadir']=sum_hadir_group($grp->id,$tanggal,1);
+                $subcon['sakit']=0;
+                $sub[]=$subcon;
+
+            }
+        $success=$sub;
+        return $this->sendResponsechart($success, 'success');
+        
+        
+    }
     
 
     

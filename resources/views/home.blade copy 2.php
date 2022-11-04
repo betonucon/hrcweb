@@ -160,78 +160,99 @@
 	<script src="{{url_plug()}}/assets/plugins/chart.js/dist/Chart.min.js"></script>
 @endsection
 @push('ajax')
-<script>
-   getData();
-   async function getData() {
-      const response = await fetch("{{url('api/dashboard_absensi')}}?tanggal={{$tanggal}}");
-      const data = await response.json();
-      console.log(data);
-      length = data.data.length;
-      console.log(length);
-      labels = [];
-      values = [];
-      hadir = [];
-      sakit = [];
-      for (i = 0; i < length; i++) {
-         labels.push(data.data[i].nama);
-         values.push(data.data[i].jumlah);
-         hadir.push(data.data[i].hadir);
-         sakit.push(data.data[i].sakit);
-      }
-      new Chart(document.getElementById("bar-chart"), {
-         type: 'bar',
-         data: {
-            labels: labels,
-            datasets: [
-               {
-                  	label: "Jumlah Team",
-                  	borderWidth: 2,
-					borderColor: 'blue',
-					backgroundColor: 'blue',
-                  	data: values
-               },
-               {
-                  	label: "Masuk Kerja",
-                  	borderWidth: 2,
-					borderColor: 'blue',
-					backgroundColor: 'blue',
-                  	data: hadir
-               },
-               {
-                  	label: "Sakit",
-                  	borderWidth: 2,
-					borderColor: 'blue',
-					backgroundColor: 'blue',
-                  	data: sakit
-               },
-            ]
-         },
-         options: {
-            legend: { display: false },
-            title: {
-               display: true,
-               text: 'U.S population'
-            }
-         }
-      });
-   }
-</script>
-@endpush
-@push('ajax')
-    <script src="{{url_plug()}}/js/app.js"></script>
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    <script type="text/javascript">
-     
-     Pusher.logToConsole = true;
+    <script>
+		/*
+		Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
+		Version: 4.6.0
+		Author: Sean Ngu
+		Website: http://www.seantheme.com/color-admin/admin/
+		*/
 
-    var pusher = new Pusher('99efd5a3e253906ee0ed', {
-        cluster: 'ap1',
-        // forceTLS: true
-    });
+		Chart.defaults.global.defaultFontColor = COLOR_DARK;
+		Chart.defaults.global.defaultFontFamily = FONT_FAMILY;
+		Chart.defaults.global.defaultFontStyle = FONT_WEIGHT;
 
-    var channel = pusher.subscribe('my-chanel');
-        channel.bind('kirim-created', function(data) {
-            getData();
-        });
+		var randomScalingFactor = function() { 
+			return Math.round(Math.random()*100)
+		};
+		var apik ="http://localhost/project/hrpertamina/api/dashboard_absensi";
+		// var items =[];
+		// var jsonfile = $.getJSON( apik);
+		
+		// var labelnya = jsonfile.data?.map(function(e) {
+			
+		// 	return e.group;
+		// });
+		var jsonfile = $.getJSON(apik).done(function(json) {
+			return json;
+		})
+		console.log(jsonfile.data);
+		var labelnya = jsonfile.nama.map(function(e) {
+			
+			return e;
+		});
+
+		
+		
+		var barChartData = {
+			labels:labelnya,
+			datasets: [{
+				label: 'Total',
+				borderWidth: 2,
+				borderColor: 'blue',
+				backgroundColor: 'blue',
+				data: [
+					@foreach(get_group() as $grp)
+						{{$grp->id}},
+					@endforeach
+				]
+			}, {
+				label: 'Hadir',
+				borderWidth: 2,
+				borderColor: 'green',
+				backgroundColor: 'green',
+				data: [
+					@foreach(get_group() as $grp)
+						{{$grp->id}},
+					@endforeach
+				]
+			}, {
+				label: 'Sakit',
+				borderWidth: 2,
+				borderColor: 'red',
+				backgroundColor: 'red',
+				data: [
+					@foreach(get_group() as $grp)
+						{{$grp->id}},
+					@endforeach
+				]
+			}]
+		};
+
+		
+
+		var handleChartJs = function() {
+			var ctx2 = document.getElementById('bar-chart').getContext('2d');
+			var barChart = new Chart(ctx2, {
+				type: 'bar',
+				data: barChartData
+			});
+
+			
+		};
+
+		var ChartJs = function () {
+			"use strict";
+			return {
+				//main function
+				init: function () {
+					handleChartJs();
+				}
+			};
+		}();
+
+		$(document).ready(function() {
+			ChartJs.init();
+		});
     </script>
 @endpush

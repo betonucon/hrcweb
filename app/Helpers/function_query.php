@@ -45,6 +45,14 @@ function sum_employe_nonaktif(){
    $data=App\Models\Employe::where('aktif','!=',1)->count();
    return $data;
 }
+function sum_employe_group($group,$tanggal){
+   $data=App\Models\Employejadwal::where('jadwal','!=',0)->where('group_id',$group)->where('tanggal',$tanggal)->count();
+   return $data;
+}
+function sum_hadir_group($group,$tanggal,$status_absen){
+   $data=App\Models\Vabsen::where('tanggal',$tanggal)->where('group_id',$group)->where('status_absen',$status_absen)->count();
+   return $data;
+}
 function sum_employe_selesai(){
    $data=App\Models\Vemploye::where('aktif',1)->where('selisih','<',1)->count();
    return $data;

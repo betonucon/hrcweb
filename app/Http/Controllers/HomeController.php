@@ -35,8 +35,13 @@ class HomeController extends Controller
         }else{
             $tahun=$request->tahun;
         }
+        if($request->tanggal==""){
+            $tanggal=date('Y-m-d');
+        }else{
+            $tanggal=$request->tanggal;
+        }
         $template='top';
-        return view('home',compact('template','bulan','tahun'));
+        return view('home',compact('template','bulan','tahun','tanggal'));
     }
     public function get_data(request $request)
     {

@@ -11,14 +11,14 @@
     <thead>
         <tr>
             <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="50px">No</th>
-            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="100px">NIK</th>
+            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" width="100px">NIK</th>
             <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" width="200px">Nama</th>
-            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="100px">Tanggal</th>
-            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="100px">Masuk</th>
-            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="100px">Pulang</th>
-            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="100px">Telat </th>
-            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="100px">P.Cepat</th>
-            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="100px">T.Telat</th>
+            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" width="100px">Tanggal</th>
+            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" width="100px">Masuk</th>
+            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" width="100px">Pulang</th>
+            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" width="100px">Telat </th>
+            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" width="100px">P.Cepat</th>
+            <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" width="100px">T.Telat</th>
         </tr>
     </thead>
     <tbody>
@@ -41,8 +41,8 @@
         ?>
         <tr>
             <td style="background:{{$color}};border:solid 1px #000">{{$no+1}}</td>
-            <td style="background:{{$color}};border:solid 1px #000">{{$o->nik}}</td>
-            <td style="background:{{$color}};border:solid 1px #000">{{$o->nama}}</td>
+            <td align="left" style="background:{{$color}};border:solid 1px #000">{{$o->nik}}</td>
+            <td align="left" style="background:{{$color}};border:solid 1px #000">{{$o->nama}}</td>
             <td style="background:{{$color}};border:solid 1px #000">{{$tanggal}}</td>
             <td style="background:{{$color}};border:solid 1px #000">{{jam(jam_absen($o->nik,$tanggal,'M'))}}</td>
             <td style="background:{{$color}};border:solid 1px #000">{{jam(jam_absen($o->nik,$tanggal,'P'))}}</td>
@@ -54,7 +54,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="6" style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="center" width="50px">TOTAL</th>
+            <th colspan="6" style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" align="left" >TOTAL</th>
             <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" width="100px">{{$tmasuk}}</th>
             <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" width="100px">{{$tpulang}}</th>
             <th style="background:#9aa389;color:#000;border:solid 1px #000;font-weight:bold" width="100px">{{$ttelat}}</th>
