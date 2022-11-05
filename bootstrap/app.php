@@ -18,10 +18,10 @@ $app = new Illuminate\Foundation\Application(
 $yourCondition = 'local';
 switch($yourCondition) {
     case 'local':
-        $app->loadEnvironmentFrom('bootstrap\.env');
+        $app->loadEnvironmentFrom('bootstrap\db.env');
         break;
     default:
-        $app->loadEnvironmentFrom('bootstrap\.env');
+        $app->loadEnvironmentFrom('bootstrap\db.env');
         break;
 };
 /*
