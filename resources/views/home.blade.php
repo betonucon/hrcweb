@@ -153,7 +153,11 @@
 			</div>
 			<!-- end row -->
 		</div>
-        
+		
+		<audio id="myAudio" autoplay>
+			<source src="{{url_plug()}}/sound/sensorbeep.ogg" type="audio/ogg">
+			<source src="{{url_plug()}}/sound/sensorbeep.mp3" type="audio/mp3">
+		</audio>         
 @endsection
 @section('script')
     @include('layouts.scripttable')
@@ -161,13 +165,17 @@
 @endsection
 @push('ajax')
 <script>
+	
+	function myFunction() {
+		var x = document.getElementById("myAudio").autoplay;
+	}
    getData();
    async function getData() {
       const response = await fetch("{{url('api/dashboard_absensi')}}?tanggal={{$tanggal}}");
       const data = await response.json();
-      console.log(data);
+    //   console.log(data);
       length = data.data.length;
-      console.log(length);
+    //   console.log(length);
       labels = [];
       values = [];
       hadir = [];
@@ -232,6 +240,7 @@
     var channel = pusher.subscribe('my-chanel');
         channel.bind('kirim-created', function(data) {
             getData();
+			myFunction();
         });
     </script>
 @endpush

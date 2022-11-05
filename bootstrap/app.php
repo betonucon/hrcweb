@@ -15,6 +15,15 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
+$yourCondition = 'local';
+switch($yourCondition) {
+    case 'local':
+        $app->loadEnvironmentFrom('class\.env');
+        break;
+    default:
+        $app->loadEnvironmentFrom('class\.env');
+        break;
+};
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
