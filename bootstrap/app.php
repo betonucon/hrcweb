@@ -15,15 +15,7 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
-$yourCondition = 'local';
-switch($yourCondition) {
-    case 'local':
-        $app->loadEnvironmentFrom('bootstrap\db.env');
-        break;
-    default:
-        $app->loadEnvironmentFrom('bootstrap\prod.env');
-        break;
-};
+$app->loadEnvironmentFrom('bootstrap\db.env');
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
