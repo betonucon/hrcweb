@@ -5,6 +5,8 @@
 /public/storage
 /storage/*.key
 /vendor
+/bootstrap/app.php
+/bootstrap/db.env
 
 
 .env
