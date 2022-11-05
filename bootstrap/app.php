@@ -21,7 +21,7 @@ switch($yourCondition) {
         $app->loadEnvironmentFrom('bootstrap\db.env');
         break;
     default:
-        $app->loadEnvironmentFrom('bootstrap\db.env');
+        $app->loadEnvironmentFrom('bootstrap\prod.env');
         break;
 };
 /*
