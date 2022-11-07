@@ -16,9 +16,10 @@ $app = new Illuminate\Foundation\Application(
 );
 
 $app->loadEnvironmentFrom('bootstrap/.env');
+
 /*
 |--------------------------------------------------------------------------
-| Bind Important Interfaces
+| Bind Important Interfaces perubahan env
 |--------------------------------------------------------------------------
 |
 | Next, we need to bind some important interfaces into the container so
