@@ -164,11 +164,12 @@
 	<script src="{{url_plug()}}/assets/plugins/chart.js/dist/Chart.min.js"></script>
 @endsection
 @push('ajax')
+
 <script>
 	
-	function myFunction() {
+	$( document ).ready(function() {
 		var x = document.getElementById("myAudio").autoplay;
-	}
+	});
    getData();
    async function getData() {
       const response = await fetch("{{url('api/dashboard_absensi')}}?tanggal={{$tanggal}}");
@@ -240,7 +241,7 @@
     var channel = pusher.subscribe('my-chanel');
         channel.bind('kirim-created', function(data) {
             getData();
-			myFunction();
+			// myFunction();
         });
     </script>
 @endpush
