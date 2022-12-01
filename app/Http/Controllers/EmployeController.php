@@ -18,6 +18,7 @@ use App\Models\Vjadwal;
 use App\Models\Cuti;
 use App\Models\Vemploye;
 use App\Models\Sertifikat;
+use App\Models\Employeasset;
 use App\Models\Employedokumen;
 
 class EmployeController extends Controller
@@ -238,6 +239,9 @@ class EmployeController extends Controller
 
     public function delete_sertifikat(request $request){
         $data = Sertifikat::where('id',$request->id)->delete();
+    }
+    public function delete_asset(request $request){
+        $data = Employeasset::where('id',$request->id)->delete();
     }
 
     public function store_dokumen(request $request){
@@ -478,6 +482,7 @@ class EmployeController extends Controller
         $rules = [];
         $messages = [];
         $coutfile=count($request->file);
+        $countasset=count($request->kode_asset);
         $getfile=$request->file('file');
         $ary = array('pdf','jpg','jpeg','png');
 
@@ -573,6 +578,13 @@ class EmployeController extends Controller
         $messages['sampai_kontrak.required']= 'Lengkapi kolom sampai kontrak';
         $messages['sampai_kontrak.date']= 'sampai kontrak hanya menerima format (YYYY-MM-DD)';
 
+        $rules['bank']= 'required';
+        $messages['bank.required']= 'Lengkapi kolom bank';
+
+        $rules['no_rek']= 'required';
+        $messages['no_rek.required']= 'Lengkapi kolom no rekening';
+
+
         $rules['jabatan_id']= 'required|numeric';
         $messages['jabatan_id.required']= 'Lengkapi kolom jabatan';
         $messages['jabatan_id.numeric']= 'jabatan hanya menerima angka';
@@ -638,6 +650,8 @@ class EmployeController extends Controller
                             'group_id'=>$request->group_id,
                             'foto'=>$filePath,
                             'asal_sekolah'=>$request->asal_sekolah,
+                            'bank'=>$request->bank,
+                            'no_rek'=>$request->no_rek,
                             'no_bpjs'=>$request->no_bpjs,
                             'no_jkn'=>$request->no_jkn,
                             'pendidikan_id'=>$request->pendidikan_id,
@@ -734,6 +748,8 @@ class EmployeController extends Controller
                         'gaji_pokok'=>ubah_uang($request->gaji_pokok),
                         'jabatan_id'=>$request->jabatan_id,
                         'ayah'=>$request->ayah,
+                        'bank'=>$request->bank,
+                        'no_rek'=>$request->no_rek,
                         'ibu'=>$request->ibu,
                         'kode_unit'=>$request->kode_unit,
                         'posisi_id'=>$request->posisi_id,
@@ -795,6 +811,23 @@ class EmployeController extends Controller
                                 
                             );
                         }
+                    }
+                }
+
+                if($countasset>0){
+                    for($as=0;$as<$countasset;$as++){
+                        
+                            $fe=Employeasset::create(
+                                [
+                                    'kode_asset'=>$request->kode_asset[$as],
+                                    'nama_asset'=>$request->nama_asset[$as],
+                                    'jumlah'=>$request->jumlah[$as],
+                                    'no_ktp'=>$pgn->no_ktp,
+                                    'nik'=>$pgn->nik,
+                                ]
+                                
+                            );
+                        
                     }
                 }
                 echo'@ok';

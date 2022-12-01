@@ -7,43 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employe extends Model
 {
     protected $table = 'm_employe';
-    protected $fillable = [ 
-            'nik',
-            'no_ktp',
-            'nama',
-            'alamat',
-            'no_hp',
-            'email',
-            'jenis_kelamin',
-            'tempat_lahir',
-            'tanggal_lahir',
-            'jabatan_id',
-            'foto',
-            'no_kontrak',
-            'mulai_kontrak',
-            'sampai_kontrak',
-            'asal_sekolah',
-            'pendidikan_id',
-            'tahun_pendidikan',
-            'group_id',
-            'no_ijazah',
-            'status_kerja',
-            'created_at',
-            'updated_at',
-            'gaji_pokok',
-            'no_bpjs',
-            'ayah',
-            'ibu',
-            'pekerjaan_ayah',
-            'pekerjaan_ibu',
-            'alamat_ayah',
-            'status_lengkap',
-            'alamat_ibu',
-            'no_jkn',
-            'kode_unit',
-            'posisi_id',
-            'aktif',
-        ]; 
+    protected $guarded = ['id'];
     public $timestamps = false;
     function mjabatan(){
         return $this->belongsTo('App\Models\Jabatan','jabatan_id','id');

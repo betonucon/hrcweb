@@ -44,7 +44,7 @@
 		<!-- begin #sidebar -->
         <div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
-			<div data-scrollbar="true" data-height="100%">
+			<div data-scrollbar="true" data-height="100%" style="background: linear-gradient(to right, #0d235a, #564940);">
                 <ul class="nav">
 					<li class="nav-profile">
 						<a href="javascript:;" data-toggle="nav-profile">

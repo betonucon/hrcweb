@@ -65,6 +65,7 @@ Route::group(['middleware'    => 'auth'],function(){
         Route::get('/tampil_dokumen', [EmployeController::class, 'tampil_dokumen']);
         Route::get('/delete_data', [EmployeController::class, 'delete_data']);
         Route::get('/delete_sertifikat', [EmployeController::class, 'delete_sertifikat']);
+        Route::get('/delete_asset', [EmployeController::class, 'delete_asset']);
         Route::get('/create', [EmployeController::class, 'create']);
         Route::get('/create_dokumen', [EmployeController::class, 'create_dokumen']);
         Route::get('/download_excel', [EmployeController::class, 'download_excel']);

@@ -29,6 +29,10 @@ function get_dokumen(){
    $data=App\Models\Dokumen::where('aktif',1)->where('kat',1)->orderBy('id','Asc')->get();
    return $data;
 }
+function get_bank(){
+   $data=App\Models\Bank::orderBy('bank','Asc')->get();
+   return $data;
+}
 function count_dokumen(){
    $data=App\Models\Dokumen::where('aktif',1)->where('kat',1)->count();
    return $data;
@@ -311,6 +315,10 @@ function pendidikan_id($pendidikan){
 }
 function get_sertifikat($no_ktp){
    $data=App\Models\Sertifikat::where('no_ktp',$no_ktp)->orderBy('id','Asc')->get();
+   return $data;
+}
+function get_asset($no_ktp){
+   $data=App\Models\Employeasset::where('no_ktp',$no_ktp)->orderBy('id','Asc')->get();
    return $data;
 }
 

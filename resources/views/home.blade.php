@@ -241,6 +241,7 @@
     var channel = pusher.subscribe('my-chanel');
         channel.bind('kirim-created', function(data) {
             getData();
+			alert(data)
 			// myFunction();
         });
     </script>
